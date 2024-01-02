@@ -11,3 +11,59 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.forminput { display: flex;
+flex-direction: column;
+width: 25%;
+padding: 10px;
+justify-content: center;
+align-items: center;
+border: solid;
+border-radius: 5px;
+border-color: black;
+
+
+}
+.forminput h3{ 
+margin: 20px;
+padding:10px;
+border: solid;
+border-radius: 5px;
+
+  
+  }
+.forminput label{ 
+  display: flex;
+  flex-direction: column;
+  
+  }
+.forminput input{ 
+margin: 5px;
+
+}
+.divForm{
+  display: flex;
+  justify-content: center;
+}
+
+.forminput button{ 
+width:  70px;
+  
+  }
+.product-all{
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.product-each{
+  padding: 30px;
+  border: solid;
+  border-radius: 5px;
+  margin: 10px;
+}
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
