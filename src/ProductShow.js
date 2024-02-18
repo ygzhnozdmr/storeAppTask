@@ -14,7 +14,9 @@ function ProductShow({product,onDelete}) {
    const handleDeleteClick = () =>{
     onDelete(product.id);
    }
- 
+//    const handleFilter = () =>{
+//     onFilter(product.title,product.desc,product.price,product.category);
+//    }
  
     return ( 
      <div className='product-each'>

@@ -55,8 +55,8 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <form>
+      <div className='form-filter'>
+        <form >
             <input value={filter} onChange={FilterCapture}></input>
             <button onClick={filterSubmit}>Submit</button>
             <button onClick={filterBackSubmit}>Back</button>

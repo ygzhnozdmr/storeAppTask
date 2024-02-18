@@ -49,6 +49,8 @@ function ProductAdd({onCreate}) {
             <input type="text" value={desc} onChange={descCapture}></input>
             <label>Product Price</label>
             <input type="text" value={price} onChange={priceCapture}></input>
+            <label>Stock</label>
+                <input type="text" value={stock} onChange={stockCapture}></input>
             <li>
                 <select  onChange={categoryCapture}>
                     <option>--Choose Category--</option>
@@ -60,7 +62,7 @@ function ProductAdd({onCreate}) {
 
                 </select>
                 </li>
-                <input type="text" value={stock} onChange={stockCapture}></input>
+                <br></br>
 
             <button onClick={handleSubmit} >Submit</button>
         </form >
