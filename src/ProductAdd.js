@@ -7,6 +7,8 @@ function ProductAdd({onCreate}) {
     const [desc, setDesc] = useState("" );
     const [price, setPrice] = useState( "");
     const [category, setCategory] = useState( "");
+    const [stock, setStock] = useState(0);
+
 
 
 
@@ -21,6 +23,9 @@ function ProductAdd({onCreate}) {
     const priceCapture = (event) => {
     setPrice(event.target.value);
     };
+    const stockCapture = (event) => {
+        setStock(event.target.value);
+        };
     const categoryCapture = (event) => {
 
         setCategory(event.target.value.toLowerCase());
@@ -29,7 +34,7 @@ function ProductAdd({onCreate}) {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(price);
-        onCreate(title,desc,price,category);
+        onCreate(title,desc,price,category,stock);
     };
 
 
@@ -55,6 +60,8 @@ function ProductAdd({onCreate}) {
 
                 </select>
                 </li>
+                <input type="text" value={stock} onChange={stockCapture}></input>
+
             <button onClick={handleSubmit} >Submit</button>
         </form >
     </div>  );

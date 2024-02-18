@@ -12,8 +12,9 @@ function ProductShow({product,onDelete}) {
     //     setEdit(!edit);
     //     };
    const handleDeleteClick = () =>{
-    onDelete(product.id)
+    onDelete(product.id);
    }
+ 
  
     return ( 
      <div className='product-each'>
