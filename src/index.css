@@ -73,3 +73,9 @@ width:  70px;
   justify-content: space-between;
   margin: 5px;
 }
+
+.product-update {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}

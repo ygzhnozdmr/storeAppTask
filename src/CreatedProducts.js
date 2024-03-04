@@ -1,6 +1,6 @@
 import ProductShow from "./ProductShow";
 
-function CreatedProducts({products,onDelete}) {
+function CreatedProducts({products,onDelete,onUpdate}) {
     
 
    
@@ -8,7 +8,7 @@ function CreatedProducts({products,onDelete}) {
        <div className="product-all">
        
        { products.map((product,index)=> {
-           return   <ProductShow product={product} key={index} onDelete={onDelete}/>;
+           return   <ProductShow product={product} key={index} onDelete={onDelete} onUpdate={onUpdate} />;
         })}
        </div>
        );

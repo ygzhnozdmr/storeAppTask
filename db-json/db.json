@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "title": "Siyez Ekmek",
+      "desc": "Ekmek Siyez",
+      "price": "12",
+      "category": "vegetables",
+      "stock": "999",
+      "id": 1
+    },
+    {
+      "title": "Tambugday Ekmek",
+      "desc": "Ekmek Tam Bugday",
+      "price": "35",
+      "category": "dairy",
+      "stock": "999",
+      "id": 2
+    },
+    {
+      "title": "Tambugday Ekmek",
+      "desc": "Ekmek Tam Bugday",
+      "price": "35",
+      "category": "dairy",
+      "stock": "999",
+      "id": 3
+    },
+    {
+      "title": "Tambugday Ekmek",
+      "desc": "Ekmek Tam Bugday",
+      "price": "35",
+      "category": "beverages",
+      "stock": "999",
+      "id": 4
+    }
+  ]
+}

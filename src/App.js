@@ -2,56 +2,86 @@
 import './App.css';
 import CreatedProducts from './CreatedProducts';
 import ProductAdd from './ProductAdd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios'
 
 
 
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [filter, setFilter] = useState('')
+  let [filtering, setFiltering] = useState(false)
+  const [backfiltering, setbackFiltering] = useState(false)
 
-
-  const createProduct = (title , desc , price,category,stock) =>{
-    console.log(title,desc,price,category,stock)
-  const createdProducts =[  ...products, {id:Math.round(Math.random()*999999),
-    title,desc,price,category,stock}];
+  const createProduct = async (title , desc , price,category,stock) =>{
+  const response = await axios.post('http://localhost:3001/products',{
+    title , desc , price,category,stock
+  })
+  const createdProducts =[  ...products, response.data];
   setProducts(createdProducts);
-  console.log(createdProducts[0])
   }
+  const fetchProducts = async() =>{let response = await axios.get('http://localhost:3001/products') ;
+  setProducts(response.data);
+  }
+  useEffect(
+    ()=> {
+    fetchProducts();
+    },[backfiltering]);
+ 
+    const fetchFiltered  = async() =>{const filteredresponse = await axios.get(`http://localhost:3001/products?q=${filter}`)
+  console.log(filteredresponse) ;
+  setProducts(filteredresponse.data);}
+  useEffect(
+    ()=> { fetchFiltered(); },[filtering]
+  )
+  // useEffect(
+  //   (filteredresponse)=> {setProducts(filteredresponse.data);},[filtering])
+  
 
-  const deleteProduct = (id) =>{
+  const deleteProduct = async (id) =>{
+   await axios.delete(`http://localhost:3001/products/${id}`)
   const afterDeletingProducts =  products.filter((product) =>{
       return product.id !== id
     });
     setProducts(afterDeletingProducts);
     }
-    const [filter, setFilter] = useState('')
+    
+    
     const FilterCapture = (event) =>{
         setFilter(event.target.value)
          };
 
-    const filterSubmit = (event,products) => {
-        event.preventDefault();
-         const beforeFilteringProducts = products;
-        return beforeFilteringProducts;
-        setFiltering();
-      
-        
-
-      }
-      function setFiltering() {
-        const afterFilteringProducts = products.filter((product) =>{
-          return (product.title || product.desc ) == filter ;
-        })
-        setProducts(afterFilteringProducts);
-      }
-      
     
+  
+      
+      const editProductbyId = async (id,title,desc,price,category,stock) =>{
+        await axios.put(`http://localhost:3001/products/${id}`,{
+          title:title,desc:desc,price:price,category:category,stock:stock
+        })
+        const afterEditingProducts =  products.map((product) =>{
+          if(product.id === id )
+            {
+              return {id,title:title,desc:desc,price:price,category:category,stock:stock}
+            }
+            return product;
+          });
+          setProducts(afterEditingProducts);
+          }
+
+          const filterSubmit = async (event) => {
+            event.preventDefault();
+            setFiltering(!filtering);
+      
+          }
      
-        const filterBackSubmit = (event,beforeFilteringProducts) => {
+        const filterBackSubmit = (event) => {
           event.preventDefault();
-          setProducts(beforeFilteringProducts)
+          setbackFiltering(!backfiltering);
+
         }
+       
+        
 
   return (
     <div className="App">
@@ -64,7 +94,7 @@ function App() {
     </div> 
       <ProductAdd onCreate={createProduct}/>
 
-      <CreatedProducts products={products} onDelete={deleteProduct}  />
+      <CreatedProducts products={products} onDelete={deleteProduct} onUpdate={editProductbyId}  />
     </div>
   );
 }
